@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Corrector Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">Layout Corrector Pro</h1>
+            <p class="subtitle">Instantly fix keyboard layout errors.</p>
+        </header>
+
+        <!-- Text Areas -->
+        <main class="main-content">
+            <div class="text-area-wrapper">
+                <label for="input-1" id="label-1">Arabic-Layout Text</label>
+                <textarea id="input-1" rows="9" placeholder="اكتب هنا..."></textarea>
+            </div>
+            
+            <button id="swap-btn" title="Swap Direction">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </button>
+
+            <div class="text-area-wrapper">
+                <label for="input-2" id="label-2">Corrected English Text</label>
+                <textarea id="input-2" rows="9" readonly placeholder="Your text appears here..."></textarea>
+            </div>
+        </main>
+
+        <!-- Action Buttons -->
+        <footer class="footer-actions">
+            <button id="manage-rules-btn" class="btn btn-secondary">Manage Rules</button>
+            <button id="copy-btn" class="btn btn-secondary">Copy Result</button>
+            <button id="clear-btn" class="btn btn-danger">Clear All</button>
+        </footer>
+        <p id="rights">--- Developed with <span id="heart">&#x2764;</span> by Yousef Mysara ---</p>
+
+    </div>
+    
+    <!-- Rules Management Modal -->
+    <div id="rules-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2>Manage Custom Rules</h2>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </header>
+            
+            <form id="add-rule-form">
+                 <p>Add a new rule to override the default mapping.</p>
+                <div class="form-grid">
+                    <div>
+                        <label for="rule-from">From (Arabic)</label>
+                        <input type="text" id="rule-from" required>
+                    </div>
+                    <div>
+                        <label for="rule-to">To (English)</label>
+                        <input type="text" id="rule-to" required>
+                    </div>
+                    <div>
+                        <label>Add</label>
+                        <button type="submit" class="btn btn-primary">New Rule</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="rules-list-container">
+                <h3>Your Custom Rules</h3>
+                <div id="custom-rules-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
