@@ -31,4 +31,4 @@ A powerful Chrome extension to instantly correct text typed in the wrong keyboar
 2. **Manual Correction:** Click the extension icon in your toolbar to open the popup. You can type or paste text there for conversion.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
