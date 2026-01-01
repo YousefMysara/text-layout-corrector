@@ -1,11 +1,12 @@
 # Text Layout Corrector Pro 🚀
 
-A powerful Chrome extension to instantly correct text typed in the wrong keyboard layout. Features dark mode, custom conversion rules, keyboard shortcuts, conversion history, and multi-language support.
+A powerful Chrome extension to instantly correct Arabic text typed with English keyboard layout (and vice versa). Features dark mode, custom conversion rules, conversion history, and auto-detection.
 
 ## ✨ Features
 
 ### Core Features
 - **🔄 Instant Correction** - Right-click on selected text to copy the corrected version to your clipboard
+- **🤖 Auto-Detection** - Automatically detects Arabic or English text and converts accordingly
 - **🌙 Dark Mode** - Toggle between light and dark themes for comfortable viewing
 - **📜 Conversion History** - Access your last 20 conversions for quick reference
 - **🔧 Custom Rules** - Create, edit, and manage your own conversion rules
@@ -16,17 +17,16 @@ A powerful Chrome extension to instantly correct text typed in the wrong keyboar
 - **✓ Badge Indicator** - Visual confirmation on the extension icon
 
 ### Advanced Features
-- **🌐 Multi-Language Support** - Arabic ↔ English, Persian ↔ English, Hebrew ↔ English
+- **🌐 Language Support** - Arabic ↔ English (more languages coming soon!)
 - **📥 Import/Export Rules** - Backup and share your custom rules as JSON
 - **📊 Usage Statistics** - Track your conversion count and characters processed
 - **🔍 Rule Search** - Quickly find rules when you have many
-- **🔄 Auto-Detect** - Automatically detect input language direction
 - **☁️ Sync Storage** - Your settings sync across Chrome browsers
 
 ## 🛠️ Installation
 
 ### Prerequisites
-- Google Chrome (or Chromium-based browser)
+- Google Chrome (or Chromium-based browser like Edge, Brave, etc.)
 
 ### Steps
 1. Download this project as a ZIP file and unzip it, or clone the repository
@@ -42,17 +42,14 @@ A powerful Chrome extension to instantly correct text typed in the wrong keyboar
 1. Select any text on a webpage that was typed with the wrong layout
 2. Right-click and choose **"Correct Layout & Copy"**
 3. The corrected text is now on your clipboard, ready to paste with `Ctrl+V`
-
-### Keyboard Shortcut
-1. Select text on any webpage
-2. Press `Ctrl+Shift+C` (or `Cmd+Shift+C` on Mac)
-3. Corrected text is copied to your clipboard
+4. Auto-detection works automatically - no need to specify direction!
 
 ### Manual Conversion (Popup)
 1. Click the extension icon in your toolbar
 2. Type or paste text in the input area
 3. The corrected text appears automatically in the output area
-4. Click **Copy** to copy the result
+4. Click **Copy** to save the result to your clipboard and add to history
+5. Use the **swap button (⇄)** to manually change conversion direction if needed
 
 ### Managing Custom Rules
 1. Click **Rules** in the popup
@@ -60,10 +57,17 @@ A powerful Chrome extension to instantly correct text typed in the wrong keyboar
 3. Edit existing rules by clicking the edit icon
 4. Delete rules by clicking the delete icon
 5. Use **Import/Export** to backup or share your rules
+6. Search for specific rules using the search box
+
+### Viewing History
+1. Click the **clock icon** in the popup header
+2. Browse your last 20 conversions
+3. Click "Use" to load a previous conversion
+4. Clear all history with the "Clear History" button
 
 ## ⚙️ Settings
 
-Access settings by clicking the gear icon in the popup or navigating to the extension's options page.
+Access settings by clicking the gear icon in the popup.
 
 ### Available Settings
 | Setting | Description |
@@ -72,25 +76,21 @@ Access settings by clicking the gear icon in the popup or navigating to the exte
 | Sound Effects | Enable/disable conversion sounds |
 | Sound Volume | Adjust notification volume (0-100%) |
 | System Notifications | Enable/disable desktop notifications |
-| Auto-Detect | Automatically detect text direction |
-| Language Pair | Select Arabic/Persian/Hebrew ↔ English |
-
-## ⌨️ Keyboard Shortcuts
-
-| Shortcut | Action |
-|----------|--------|
-| `Alt+Shift+C` | Convert selected text and copy |
-| `Alt+Shift+L` | Open extension popup |
-| `Escape` | Close modals |
-| `Ctrl+Enter` | Copy result (in popup) |
+| Auto-Detect | Automatically detect text direction (recommended) |
+| Language Support | Currently Arabic ↔ English (more coming soon) |
 
 ## 🔧 Custom Rules Examples
+
+The extension comes with default rules for common Arabic combinations:
 
 | From | To | Description |
 |------|-----|-------------|
 | `ة` | `m` | Arabic Ta Marbuta → m |
 | `لا` | `b` | Lam-Alef combination → b |
 | `لآ` | `B` | Lam-Alef Madda → B |
+| `و` | `,` | Waw → comma |
+
+You can add your own rules for special cases!
 
 ## 📁 Project Structure
 
@@ -121,8 +121,17 @@ Text Layout Corrector/
 This extension:
 - ✅ Works entirely locally - no data sent to external servers
 - ✅ Only accesses the clipboard when you explicitly trigger a conversion
-- ✅ Stores all data in your browser's local storage
-- ✅ Syncs settings across your Chrome browsers (optional)
+- ✅ Stores all data in your browser's sync storage
+- ✅ No tracking, no analytics, no external connections
+- ✅ Open source - you can review all the code
+
+## 💡 Tips & Tricks
+
+- **Auto-detect is your friend** - Leave it enabled and the extension will figure out the direction
+- **Use custom rules** - Add patterns you type frequently for faster conversions
+- **Check history** - Quickly reuse recent conversions instead of retyping
+- **Export your rules** - Backup your custom rules before resetting or switching browsers
+- **Right-click is fastest** - Select and right-click for instant correction
 
 ## 🤝 Contributing
 
@@ -130,16 +139,18 @@ Contributions are welcome! Feel free to:
 - Report bugs
 - Suggest new features
 - Submit pull requests
+- Share your custom rules
 
 ## 📝 Changelog
 
 ### Version 2.0.0
 - 🌙 Added dark mode support
-- ⌨️ Added Right-Click menu
+- ⌨️ Added right-click context menu
+- 🤖 Added bidirectional auto-detection
 - 📜 Added conversion history
 - 🔧 Added rule import/export
 - 📊 Added usage statistics
-- 🌐 Added Persian and Hebrew support
+- 🌐 Focused on Arabic ↔ English
 - ⚙️ Added comprehensive settings page
 - 🎨 Complete UI redesign
 - ☁️ Added Chrome sync storage

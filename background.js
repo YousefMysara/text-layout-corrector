@@ -71,7 +71,7 @@ const BASE_MAP_AR_TO_EN = {
 
     // Row 2 - QWERTY row (Shift - uppercase/diacritics)
     'َ': 'Q', 'ً': 'W', 'ُ': 'E', 'ٌ': 'R', 'إ': 'Y',
-    "'": 'U', '÷': 'I', '×': 'O', '؛': 'P',
+    '\u2019': 'U', '÷': 'I', '×': 'O', '؛': 'P',
 
     // Row 3 - ASDF row (Shift)
     'ِ': 'A', 'ٍ': 'S', ']': 'D', '[': 'F', 'أ': 'H',

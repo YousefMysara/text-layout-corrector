@@ -19,7 +19,6 @@ const elements = {
 
     // Conversion
     autoDetect: document.getElementById('auto-detect'),
-    languagePair: document.getElementById('language-pair'),
 
     // Statistics
     statConversions: document.getElementById('stat-conversions'),
@@ -27,6 +26,7 @@ const elements = {
     statLastUsed: document.getElementById('stat-last-used'),
 
     // Actions
+    resetStatsBtn: document.getElementById('reset-stats-btn'),
     resetAllBtn: document.getElementById('reset-all-btn'),
     backLink: document.getElementById('back-link'),
 
@@ -193,7 +193,6 @@ function updateUIFromSettings() {
 
     elements.notificationsEnabled.checked = settings.notificationsEnabled;
     elements.autoDetect.checked = settings.autoDetectDirection;
-    elements.languagePair.value = settings.languagePair;
 }
 
 /**
@@ -255,10 +254,32 @@ function setupEventListeners() {
         saveSettings();
     });
 
-    // Language pair select
-    elements.languagePair.addEventListener('change', (e) => {
-        settings.languagePair = e.target.value;
-        saveSettings();
+    // Reset statistics button
+    elements.resetStatsBtn.addEventListener('click', async () => {
+        const confirmed = confirm('This will reset all usage statistics. Continue?');
+
+        if (confirmed) {
+            try {
+                // Reset statistics to default
+                await chrome.storage.sync.set({
+                    usageStatistics: {
+                        totalConversions: 0,
+                        charactersConverted: 0,
+                        lastUsed: null
+                    }
+                });
+
+                showToast('Statistics have been reset', 'success');
+
+                // Reload statistics display
+                setTimeout(() => {
+                    loadStatistics();
+                }, 300);
+            } catch (error) {
+                console.error('Error resetting statistics:', error);
+                showToast('Failed to reset statistics', 'error');
+            }
+        }
     });
 
     // Reset all button

@@ -32,7 +32,7 @@
             font-size: 28px;
             font-weight: 700;
             margin: 0 0 8px 0;
-            background: linear-gradient(135deg, var(--accent-color), #ec4899);
+            background: linear-gradient(135deg, #f97316, #ef4444);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -101,6 +101,7 @@
 
         .setting-control {
             margin-left: 24px;
+            flex-shrink: 0;
         }
 
         /* Toggle Switch */
@@ -108,6 +109,8 @@
             position: relative;
             width: 48px;
             height: 26px;
+            flex-shrink: 0;
+            display: inline-block;
         }
 
         .toggle-switch input {
@@ -305,8 +308,10 @@
         </a>
 
         <header class="settings-header">
-            <h1>⚙️ Settings</h1>
-            <p>Customize your Layout Corrector Pro experience</p>
+            <img src="images/icon128.png" alt="Layout Corrector Pro"
+                style="width: 64px; height: 64px; margin-bottom: 12px;">
+            <h1>Settings</h1>
+            <p>Customize your <strong>Layout Corrector Pro</strong> experience</p>
         </header>
 
         <!-- Appearance Section -->
@@ -419,15 +424,12 @@
 
             <div class="setting-item">
                 <div class="setting-info">
-                    <h3>Language Pair</h3>
-                    <p>Select the keyboard layout pair to convert</p>
+                    <h3>Language Support</h3>
+                    <p>Currently supports Arabic ↔ English</p>
                 </div>
                 <div class="setting-control">
-                    <select id="language-pair" class="select-control">
-                        <option value="ar-en">Arabic ↔ English</option>
-                        <option value="fa-en">Persian ↔ English</option>
-                        <option value="he-en">Hebrew ↔ English</option>
-                    </select>
+                    <span style="font-size: 12px; color: var(--text-secondary); font-style: italic;">More languages
+                        coming soon</span>
                 </div>
             </div>
         </section>
@@ -454,6 +456,24 @@
                 <div class="stat-card">
                     <div id="stat-last-used" class="stat-value">—</div>
                     <div class="stat-label">Last Used</div>
+                </div>
+            </div>
+
+            <div class="setting-item" style="border-bottom: none; padding: 16px 0 0 0;">
+                <div class="setting-info">
+                    <h3>Reset Statistics</h3>
+                    <p>Clear all your usage data from this device</p>
+                </div>
+                <div class="setting-control">
+                    <button id="reset-stats-btn" class="btn btn-primary btn-small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            style="margin-right: 6px;">
+                            <polyline points="1 4 1 10 7 10"></polyline>
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                        </svg>
+                        Reset Statistics
+                    </button>
                 </div>
             </div>
         </section>
@@ -483,7 +503,7 @@
         </section>
 
         <div class="version-info">
-            Text Layout Corrector Pro v3.0 • Made with ❤️ by Yousef Mysara
+            Text Layout Corrector Pro v2.0.0 • Made with ❤️ by Yousef Mysara
         </div>
     </div>
 

@@ -294,9 +294,25 @@ async function convertText() {
     }
 
     try {
+        // Auto-detect direction if enabled
+        let direction = state.isArabicToEnglish;
+
+        if (state.settings.autoDetectDirection) {
+            // Check if text contains Arabic/Persian/Hebrew characters
+            const arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+            const hasArabicChars = arabicRegex.test(text);
+            direction = hasArabicChars; // If has Arabic, convert to English
+
+            // Update state and UI to match detected direction
+            if (direction !== state.isArabicToEnglish) {
+                state.isArabicToEnglish = direction;
+                updateUIForDirection();
+            }
+        }
+
         const response = await sendMessage('CONVERT_TEXT', {
             text,
-            isArabicToEnglish: state.isArabicToEnglish
+            isArabicToEnglish: direction
         });
 
         if (response?.convertedText !== undefined) {
@@ -677,6 +693,19 @@ async function importRules(file) {
 // ============================================================================
 
 function setupEventListeners() {
+    // Safety check - ensure all critical elements exist
+    const criticalElements = [
+        'input1', 'input2', 'swapBtn', 'copyBtn', 'clearBtn',
+        'manageRulesBtn', 'themeToggleBtn', 'historyBtn', 'settingsBtn'
+    ];
+
+    for (const elementName of criticalElements) {
+        if (!elements[elementName]) {
+            console.error(`Critical element missing: ${elementName}`);
+            return;
+        }
+    }
+
     // Text input with debouncing
     const debouncedConvert = debounce(convertText, 150);
     elements.input1.addEventListener('input', () => {
