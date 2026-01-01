@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,75 +10,329 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
 
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1 class="title">Layout Corrector Pro</h1>
-            <p class="subtitle">Instantly fix keyboard layout errors.</p>
+            <div class="header-left">
+                <h1 class="title">Layout Corrector Pro</h1>
+                <p class="subtitle">Instantly fix keyboard layout errors</p>
+            </div>
+            <div class="header-actions">
+                <button id="history-btn" class="icon-btn" title="Conversion History">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </button>
+                <button id="theme-toggle-btn" class="icon-btn" title="Toggle Dark Mode">
+                    <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg id="theme-icon-dark" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button id="settings-btn" class="icon-btn" title="Settings">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
         </header>
+
+        <!-- Direction Indicator -->
+        <div class="direction-indicator">
+            <span id="direction-from" class="direction-badge active">Arabic</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+            <span id="direction-to" class="direction-badge">English</span>
+            <button id="auto-detect-btn" class="auto-detect-btn" title="Auto-detect is enabled">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z">
+                    </path>
+                    <path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"></path>
+                    <path
+                        d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z">
+                    </path>
+                    <path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"></path>
+                    <path
+                        d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z">
+                    </path>
+                    <path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"></path>
+                    <path
+                        d="M10 9.5c0 .83-.67 1.5-1.5 1.5h-5C2.67 11 2 10.33 2 9.5S2.67 8 3.5 8h5c.83 0 1.5.67 1.5 1.5z">
+                    </path>
+                    <path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"></path>
+                </svg>
+                Auto
+            </button>
+        </div>
 
         <!-- Text Areas -->
         <main class="main-content">
             <div class="text-area-wrapper">
-                <label for="input-1" id="label-1">Arabic-Layout Text</label>
-                <textarea id="input-1" rows="9" placeholder="اكتب هنا..."></textarea>
+                <div class="textarea-header">
+                    <label for="input-1" id="label-1">Arabic-Layout Text</label>
+                    <span id="char-count-1" class="char-count">0</span>
+                </div>
+                <textarea id="input-1" rows="7" placeholder="اكتب هنا..."></textarea>
             </div>
-            
-            <button id="swap-btn" title="Swap Direction">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+
+            <button id="swap-btn" title="Swap Direction (Ctrl+Shift+S)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="17 1 21 5 17 9"></polyline>
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                    <polyline points="7 23 3 19 7 15"></polyline>
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                </svg>
             </button>
 
             <div class="text-area-wrapper">
-                <label for="input-2" id="label-2">Corrected English Text</label>
-                <textarea id="input-2" rows="9" readonly placeholder="Your text appears here..."></textarea>
+                <div class="textarea-header">
+                    <label for="input-2" id="label-2">Corrected English Text</label>
+                    <span id="char-count-2" class="char-count">0</span>
+                </div>
+                <textarea id="input-2" rows="7" readonly placeholder="Your text appears here..."></textarea>
+                <!-- Loading Overlay -->
+                <div id="loading-overlay" class="loading-overlay hidden">
+                    <div class="loading-spinner"></div>
+                </div>
             </div>
         </main>
 
         <!-- Action Buttons -->
         <footer class="footer-actions">
-            <button id="manage-rules-btn" class="btn btn-secondary">Manage Rules</button>
-            <button id="copy-btn" class="btn btn-secondary">Copy Result</button>
-            <button id="clear-btn" class="btn btn-danger">Clear All</button>
+            <button id="manage-rules-btn" class="btn btn-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                Rules
+            </button>
+            <button id="copy-btn" class="btn btn-primary" disabled>
+                <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <svg id="copied-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span id="copy-text">Copy</span>
+            </button>
+            <button id="clear-btn" class="btn btn-danger" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                Clear
+            </button>
         </footer>
-        <p id="rights">--- Developed with <span id="heart">&#x2764;</span> by Yousef Mysara ---</p>
 
+        <!-- Stats Footer -->
+        <div class="stats-footer">
+            <span id="stats-display">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+                <span id="total-conversions">0</span> conversions
+            </span>
+            <span class="stats-divider">•</span>
+            <span>Right-click text to convert</span>
+        </div>
     </div>
-    
+
     <!-- Rules Management Modal -->
     <div id="rules-modal" class="modal-backdrop">
         <div class="modal-content">
             <header class="modal-header">
-                <h2>Manage Custom Rules</h2>
-                <button id="close-modal-btn" class="close-btn">&times;</button>
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    Custom Rules
+                </h2>
+                <button id="close-modal-btn" class="close-btn" title="Close">&times;</button>
             </header>
-            
-            <form id="add-rule-form">
-                 <p>Add a new rule to override the default mapping.</p>
-                <div class="form-grid">
-                    <div>
-                        <label for="rule-from">From (Arabic)</label>
-                        <input type="text" id="rule-from" required>
-                    </div>
-                    <div>
-                        <label for="rule-to">To (English)</label>
-                        <input type="text" id="rule-to" required>
-                    </div>
-                    <div>
-                        <label>Add</label>
-                        <button type="submit" class="btn btn-primary">New Rule</button>
-                    </div>
-                </div>
-            </form>
 
-            <div class="rules-list-container">
-                <h3>Your Custom Rules</h3>
-                <div id="custom-rules-list"></div>
+            <div class="modal-body">
+                <!-- Search Rules -->
+                <div class="search-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="rule-search" placeholder="Search rules...">
+                </div>
+
+                <form id="add-rule-form">
+                    <p class="form-description">Add a new rule to override the default mapping.</p>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="rule-from">From (Source)</label>
+                            <input type="text" id="rule-from" placeholder="ة" maxlength="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rule-to">To (Target)</label>
+                            <input type="text" id="rule-to" placeholder="m" maxlength="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button type="submit" class="btn btn-primary btn-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="rules-list-container">
+                    <div class="rules-header">
+                        <h3>Your Rules <span id="rules-count">(0)</span></h3>
+                    </div>
+                    <div id="custom-rules-list" class="rules-list"></div>
+                </div>
             </div>
+
+            <footer class="modal-footer">
+                <button id="import-rules-btn" class="btn btn-secondary btn-small">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    Import
+                </button>
+                <button id="export-rules-btn" class="btn btn-secondary btn-small">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Export
+                </button>
+                <button id="reset-rules-btn" class="btn btn-danger btn-small">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2.5 2v6h6M21.5 22v-6h-6"></path>
+                        <path d="M22 11.5A10 10 0 0 0 3.2 7.2M2 12.5a10 10 0 0 0 18.8 4.2"></path>
+                    </svg>
+                    Reset
+                </button>
+            </footer>
         </div>
     </div>
 
+    <!-- History Modal -->
+    <div id="history-modal" class="modal-backdrop">
+        <div class="modal-content modal-medium">
+            <header class="modal-header">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Conversion History
+                </h2>
+                <button id="close-history-btn" class="close-btn" title="Close">&times;</button>
+            </header>
+
+            <div class="modal-body">
+                <div id="history-list" class="history-list">
+                    <!-- History items will be inserted here -->
+                </div>
+                <div id="history-empty" class="empty-state hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <p>No conversion history yet</p>
+                    <span>Your recent conversions will appear here</span>
+                </div>
+            </div>
+
+            <footer class="modal-footer">
+                <button id="clear-history-btn" class="btn btn-danger btn-small">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    Clear History
+                </button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Confirm Dialog -->
+    <div id="confirm-dialog" class="modal-backdrop">
+        <div class="modal-content modal-small">
+            <header class="modal-header">
+                <h2 id="confirm-title">Confirm Action</h2>
+            </header>
+            <div class="modal-body">
+                <p id="confirm-message">Are you sure you want to continue?</p>
+            </div>
+            <footer class="modal-footer">
+                <button id="confirm-cancel" class="btn btn-secondary">Cancel</button>
+                <button id="confirm-ok" class="btn btn-danger">Confirm</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="import-file-input" accept=".json" style="display: none;">
+
     <script src="popup.js"></script>
 </body>
+
 </html>
