@@ -140,6 +140,19 @@ body {
 }
 
 .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.header-logo {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+.title-container {
     flex: 1;
 }
 
