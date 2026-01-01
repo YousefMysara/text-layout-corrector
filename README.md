@@ -1,6 +1,8 @@
 # Text Layout Corrector Pro 🚀
 
-A powerful Chrome extension to instantly correct Arabic text typed with English keyboard layout (and vice versa). Features dark mode, custom conversion rules, conversion history, and auto-detection.
+A powerful Chrome extension to instantly correct text typed in the wrong keyboard layout. Features custom conversion rules, on-page correction, and multiple user feedback options.
+
+![Text Layout Corrector Pro Screenshot](https://github-production-user-asset-6210df.s3.amazonaws.com/61670608/531297382-673c263f-cd72-40d2-9417-e9bb4bc143b9.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260101%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260101T000858Z&X-Amz-Expires=300&X-Amz-Signature=44f9c88fe35619d393702a87b839010960683bca501fa2b1956a9c271d6dcb17&X-Amz-SignedHeaders=host)
 
 ## ✨ Features
 
@@ -166,7 +168,3 @@ Contributions are welcome! Feel free to:
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-**Made with ❤️ by Yousef Mysara**
