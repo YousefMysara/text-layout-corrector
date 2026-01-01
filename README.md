@@ -2,7 +2,7 @@
 
 A powerful Chrome extension to instantly correct text typed in the wrong keyboard layout. Features custom conversion rules, on-page correction, and multiple user feedback options.
 
-![Text Layout Corrector Pro Screenshot]([https://i.imgur.com/your-project-screenshot.png](https://github.com/user-attachments/assets/673c263f-cd72-40d2-9417-e9bb4bc143b9))
+![Text Layout Corrector Pro Screenshot]([[https://i.imgur.com/your-project-screenshot.png](https://github.com/user-attachments/assets/673c263f-cd72-40d2-9417-e9bb4bc143b9)](https://github.com/user-attachments/assets/673c263f-cd72-40d2-9417-e9bb4bc143b9))
 
 ## ✨ Features
 
